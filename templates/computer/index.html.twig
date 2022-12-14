@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Computer index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="title text-center mt-3">Computer index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Model</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>ReleaseYear</th>
+                <th>SerialNumber</th>
+                <th>Image</th>
+                <th>Is_visible</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for computer in computers %}
+            <tr>
+                <td>{{ computer.id }}</td>
+                <td>{{ computer.model }}</td>
+                <td>{{ computer.description }}</td>
+                <td>{{ computer.price }}</td>
+                <td>{{ computer.releaseYear }}</td>
+                <td>{{ computer.serialNumber }}</td>
+                <td>{{ computer.image }}</td>
+                <td>{{ computer.isVisible ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_computer_show', {'id': computer.id}) }}">show</a>
+                    <a href="{{ path('app_computer_edit', {'id': computer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_computer_new') }}">Create new</a>
+</div>
+{% endblock %}

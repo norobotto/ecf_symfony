@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ECF Sainte-Croix Noémie
+{% endblock %}
+
+{% block body %}
+	<h1 class="title text-center mt-3">Trouvez le meilleur ordinateur</h1>
+	{% if app.user %}
+		<table class="table container">
+			<tbody>
+				{% for brand in brands %}
+					<tr>
+						<td>
+							<a href="{{ path('tab', {'id':brand.id}) }}" class="link-dark">{{ brand.name }}</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<div class="text-center mt-4 m">
+			<a href="{{ path('app_computer_new') }}" class="btn btn-success">Ajouter un nouvel ordinateur</a>
+		</div>
+	{% endif %}
+  
+	<div class="cards-container">
+		<div class="cards">
+			{% for computer in computers %}
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top" src="{{computer.image}}" alt="Card image cap"> 
+					<div class="card-body">
+						<h5 class="card-title">
+							{{computer.brand.name}}
+						</h5>
+						<div class="card-text my-2">
+							{{computer.description|raw}}
+						</div>
+						<a href="{{ path('app_computer_show', {'id': computer.id}) }}" class="btn btn-success">Voir l'annonce</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

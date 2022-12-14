@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Brand
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="title text-center mt-3">Create new Brand</h1>
+
+		{{ include('brand/_form.html.twig') }}
+
+		<a href="{{ path('app_brand_index') }}">back to list</a>
+	</div>
+{% endblock %}
